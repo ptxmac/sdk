@@ -10,7 +10,7 @@ jobs:
   lint:
     strategy:
       matrix:
-        go: [1.16, 1.15, 1.14]
+        go: [1.16, 1.17]
 
     runs-on: ubuntu-latest
     steps:
@@ -38,8 +38,8 @@ jobs:
   test:
     strategy:
       matrix:
-        go: [1.16, 1.15, 1.14]
-        grafana: [6.7.1, 6.6.2, 6.5.3, 6.4.5]
+        go: [1.16, 1.17]
+        grafana: [6.7.1]
 
     env:
       GRAFANA_INTEGRATION: 1
