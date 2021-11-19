@@ -24,6 +24,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: |
+            ~/.cache/go-build
             ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
@@ -70,25 +71,11 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: |
+            ~/.cache/go-build
             ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
 
-      # Calculate coverage with the newest Go version.
-      - name: Calc coverage
-        if: "${{ matrix.go == '1.16' && matrix.grafana == '6.7.1' }}"
-        run: |
-          go test -v -covermode=atomic -coverprofile=coverage.out ./...
       - name: Test
-        if: "${{ matrix.go != '1.16' && matrix.grafana != '6.7.1' }}"
         run: go test -v ./...
-      - name: Convert coverage.out to coverage.lcov
-        if: "${{ matrix.go == '1.16' && matrix.grafana == '6.7.1' }}"
-        uses: jandelgado/gcov2lcov-action@v1.0.6
-      - name: Coveralls
-        if: "${{ matrix.go == '1.16' && matrix.grafana == '6.7.1' }}"
-        uses: coverallsapp/github-action@v1.1.2
-        with:
-          github-token: ${{ secrets.github_token }}
-          path-to-lcov: coverage.lcov

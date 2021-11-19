@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/K-Phoen/sdk"
 	"github.com/chromedp/chromedp"
-	"github.com/grafana-tools/sdk"
 )
 
 /*

@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/grafana-tools/sdk"
+	"github.com/K-Phoen/sdk"
 	"github.com/stretchr/testify/assert"
 )
 
