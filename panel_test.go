@@ -258,6 +258,9 @@ func TestNewGraph(t *testing.T) {
 	if graph.SinglestatPanel != nil {
 		t.Error("should be nil")
 	}
+	if graph.LogsPanel != nil {
+		t.Error("should be nil")
+	}
 	if graph.Title != title {
 		t.Errorf("title should be %s but %s", title, graph.Title)
 	}
@@ -283,8 +286,39 @@ func TestNewTimeseries(t *testing.T) {
 	if timeseries.SinglestatPanel != nil {
 		t.Error("should be nil")
 	}
+	if timeseries.LogsPanel != nil {
+		t.Error("should be nil")
+	}
 	if timeseries.Title != title {
 		t.Errorf("title should be %s but %s", title, timeseries.Title)
+	}
+}
+
+func TestNewLogs(t *testing.T) {
+	var title = "Sample Title"
+
+	logs := sdk.NewLogs(title)
+
+	if logs.LogsPanel == nil {
+		t.Error("should be not nil")
+	}
+	if logs.TimeseriesPanel != nil {
+		t.Error("should not nil")
+	}
+	if logs.GraphPanel != nil {
+		t.Error("should be nil")
+	}
+	if logs.TextPanel != nil {
+		t.Error("should be nil")
+	}
+	if logs.DashlistPanel != nil {
+		t.Error("should be nil")
+	}
+	if logs.SinglestatPanel != nil {
+		t.Error("should be nil")
+	}
+	if logs.Title != title {
+		t.Errorf("title should be %s but %s", title, logs.Title)
 	}
 }
 
